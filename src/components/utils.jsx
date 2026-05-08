@@ -1,5 +1,18 @@
 import { NavLink } from 'react-router';
 
+export function ShopNavbar() {
+    return (
+    <nav>
+        <NavLink  />
+        <NavLink to={'.'} end className={({ isActive }) => isActive && 'active-link'}>All</NavLink>
+        <NavLink to={'mens'} className={({ isActive }) => isActive && 'active-link'}>Men's Clothing</NavLink>
+        <NavLink to={'womans'} className={({ isActive }) => isActive && 'active-link'}>Woman's Clothing</NavLink>
+        <NavLink to={'technology'} className={({ isActive }) => isActive && 'active-link'}>Technology</NavLink>
+        <NavLink to={'jewelry'} className={({ isActive }) => isActive && 'active-link'}>Jewelry</NavLink>
+    </nav>
+    )
+}
+
 export function Navbar() {
     return (
         <header style={{
