@@ -1,5 +1,42 @@
 import { NavLink } from 'react-router';
 
+function ItemCard({ itemName, price }) {
+    return (
+        <div className="itemCard" style={{ border: '1px solid black ', padding: '10px' }}>
+            <div>
+                {/* <img src={imageSrc} alt={itemName} /> */}
+            </div>
+            <div>
+                <p>{itemName}</p>
+                <p>{price}</p>
+                <div className="toggleQuantity" style={{ display: 'flex', alignItems: 'center' }}>
+                    <button>-</button>
+                    <p>1</p>
+                    <button>+</button>
+                </div>
+                <button>Add to cart</button>
+            </div>
+        </div>
+    )
+}
+
+export function MainContent({ items }) {
+    return (
+        <div className="main-content">
+            {
+                items.map(item => (
+                    <ItemCard
+                        key={item.id}
+                        // imageSrc={item.imageSrc}
+                        itemName={item.name}
+                        price={item.price}
+                    />
+                ))
+            }
+        </div>
+    )
+}
+
 export function ShopNavbar() {
     return (
     <nav>
