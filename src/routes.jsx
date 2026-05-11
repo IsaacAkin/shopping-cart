@@ -4,7 +4,7 @@ import Shop from './components/Shop.jsx';
 import ShopHome from "./components/ShopHome.jsx";
 import Mens from './components/Mens.jsx';
 import Womans from './components/Womans.jsx';
-import Technology from './components/Technology.jsx';
+import Electronics from './components/Electronics.jsx';
 import Jewelry from './components/Jewelry.jsx';
 import Cart from './components/Cart.jsx';
 
@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
             { index: true, Component: ShopHome },
             { path: 'mens', Component: Mens },
             { path: 'womans', Component: Womans },
-            { path: 'technology', Component: Technology },
+            { path: 'electronics', Component: Electronics },
             { path: 'jewelry', Component: Jewelry }
         ]
     },
