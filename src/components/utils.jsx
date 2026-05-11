@@ -8,13 +8,13 @@ function ItemCard({ itemName, price }) {
             </div>
             <div>
                 <p>{itemName}</p>
-                <p>{price}</p>
-                <div className="toggleQuantity" style={{ display: 'flex', alignItems: 'center' }}>
+                <p>£{price}</p>
+                <span className="toggleQuantity" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid black' , margin: '0', padding: '0' }}>
                     <button>-</button>
                     <p>1</p>
                     <button>+</button>
-                </div>
-                <button>Add to cart</button>
+                </span>
+                <button style={{ justifySelf: 'center'}}>Add to cart</button>
             </div>
         </div>
     )
@@ -28,7 +28,7 @@ export function MainContent({ items }) {
                     <ItemCard
                         key={item.id}
                         // imageSrc={item.imageSrc}
-                        itemName={item.name}
+                        itemName={item.title}
                         price={item.price}
                     />
                 ))
@@ -40,11 +40,10 @@ export function MainContent({ items }) {
 export function ShopNavbar() {
     return (
     <nav>
-        <NavLink  />
         <NavLink to={'.'} end className={({ isActive }) => isActive && 'active-link'}>All</NavLink>
         <NavLink to={'mens'} className={({ isActive }) => isActive && 'active-link'}>Men's Clothing</NavLink>
         <NavLink to={'womans'} className={({ isActive }) => isActive && 'active-link'}>Woman's Clothing</NavLink>
-        <NavLink to={'technology'} className={({ isActive }) => isActive && 'active-link'}>Technology</NavLink>
+        <NavLink to={'electronics'} className={({ isActive }) => isActive && 'active-link'}>Electronics</NavLink>
         <NavLink to={'jewelry'} className={({ isActive }) => isActive && 'active-link'}>Jewelry</NavLink>
     </nav>
     )
