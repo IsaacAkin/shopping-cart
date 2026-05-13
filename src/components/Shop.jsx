@@ -4,11 +4,14 @@ import { Navbar, ShopNavbar } from "./utils";
 import '../styles/styles.css';
 
 export default function Shop() {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+    const selectedItems = localStorage.getItem('cart');
+    return selectedItems ? JSON.parse(selectedItems) : [];
+  });
 
   return (
     <div className="app">
-      <Navbar />
+      <Navbar cartItems={cart.length}/>
       <div className="shop">
         <ShopNavbar />
         <div className="main-contents" style={{ border: '1px solid red'}}>

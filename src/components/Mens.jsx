@@ -1,17 +1,21 @@
 import '../styles/styles.css';
 import { MainContent } from "./utils";
 import { useState, useEffect } from "react";
-// import { useOutletContext } from "react-router";
+import { useOutletContext } from "react-router";
 
 export default function Mens() {
   const [mensClothing, setMensClothing] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  // const [cart, setCart] = useOutletContext();
+  const [cart, setCart] = useOutletContext();
 
-  // function handleCart() {
-  //   setCart(previous => ({...previous, }))
-  // }
+  function handleCart(id, title, price, category, image, numberRequested) {
+    setCart(previous => ([ ...previous, { id, title, price, category, image, numberRequested }]));
+  }
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
 
   useEffect(() => {
       async function fetchProducts() {
@@ -41,7 +45,7 @@ export default function Mens() {
       {error && <p>Error loading content</p>}
       {
         mensClothing && (
-          <MainContent items={mensClothing} />
+          <MainContent products={mensClothing} onClick={handleCart} />
         )
       }
     </div>
