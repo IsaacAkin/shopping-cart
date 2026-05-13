@@ -1,35 +1,38 @@
 import { NavLink } from 'react-router';
 
-function ItemCard({ itemName, price }) {
+function ItemCard({ id, title, price, category, imageSrc, onClick }) {
     return (
-        <div className="itemCard" style={{ border: '1px solid black ', padding: '10px' }}>
+        <div className="item-card" style={{ border: '1px solid black ', padding: '10px' }}>
             <div>
-                {/* <img src={imageSrc} alt={itemName} /> */}
+                <img src={imageSrc} alt={title} />
             </div>
             <div>
-                <p>{itemName}</p>
+                <p>{title}</p>
                 <p>£{price}</p>
                 <span className="toggleQuantity" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid black' , margin: '0', padding: '0' }}>
                     <button>-</button>
-                    <p>1</p>
+                    <input type="number" name="item-count" id="item-count" />
                     <button>+</button>
                 </span>
-                <button style={{ justifySelf: 'center'}}>Add to cart</button>
+                <button onClick={() => onClick(id, title, price, category, imageSrc)} style={{ justifySelf: 'center'}}>Add to cart</button>
             </div>
         </div>
     )
 }
 
-export function MainContent({ items }) {
+export function MainContent({ products, onClick }) {
     return (
         <div className="main-content">
             {
-                items.map(item => (
+                products.map(product => (
                     <ItemCard
-                        key={item.id}
-                        // imageSrc={item.imageSrc}
-                        itemName={item.title}
-                        price={item.price}
+                        key={product.id}
+                        id={product.id}
+                        title={product.title}
+                        price={product.price}
+                        category={product.category}
+                        imageSrc={product.image}
+                        onClick={onClick}
                     />
                 ))
             }
@@ -49,7 +52,7 @@ export function ShopNavbar() {
     )
 }
 
-export function Navbar() {
+export function Navbar({ cartItems }) {
     return (
         <header style={{
             border: '2px solid black',
@@ -74,7 +77,7 @@ export function Navbar() {
                 <div style={{
                     justifySelf: 'flex-end'
                 }}>
-                    <NavLink to={'/cart'} className={({ isActive }) => isActive && 'active-link'}>Cart</NavLink>
+                    <NavLink to={'/cart'} className={({ isActive }) => isActive && 'active-link'}>Cart {cartItems && cartItems }</NavLink>
                 </div>
         </header>
     )
