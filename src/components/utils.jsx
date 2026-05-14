@@ -1,6 +1,17 @@
 import { NavLink } from 'react-router';
+import { useState } from "react";
 
 function ItemCard({ id, title, price, category, imageSrc, onClick }) {
+    const [itemCount, setItemCount] = useState(1);
+
+    function increaseItemCount() {
+        setItemCount(itemCount + 1);
+    }
+    
+    function decreaseItemCount() {
+        itemCount > 1 && setItemCount(itemCount - 1);
+    }
+
     return (
         <div className="item-card" style={{ border: '1px solid black ', padding: '10px' }}>
             <div>
@@ -10,11 +21,11 @@ function ItemCard({ id, title, price, category, imageSrc, onClick }) {
                 <p>{title}</p>
                 <p>£{price}</p>
                 <span className="toggleQuantity" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid black' , margin: '0', padding: '0' }}>
-                    <button>-</button>
-                    <input type="number" name="item-count" id="item-count" />
-                    <button>+</button>
+                    <button onClick={decreaseItemCount}>-</button>
+                    <p>{itemCount}</p>
+                    <button onClick={increaseItemCount}>+</button>
                 </span>
-                <button onClick={() => onClick(id, title, price, category, imageSrc)} style={{ justifySelf: 'center'}}>Add to cart</button>
+                <button onClick={() => onClick(id, title, price, category, imageSrc, itemCount)} style={{ justifySelf: 'center'}}>Add to cart</button>
             </div>
         </div>
     )
