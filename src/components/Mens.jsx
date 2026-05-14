@@ -9,8 +9,14 @@ export default function Mens() {
   const [loading, setLoading] = useState(true);
   const [cart, setCart] = useOutletContext();
 
-  function handleCart(id, title, price, category, image, numberRequested) {
-    setCart(previous => ([ ...previous, { id, title, price, category, image, numberRequested }]));
+  function handleCart(id, title, price, category, image, itemCount) {
+    const existingProduct = cart.find(product => product.id === id);
+
+    if(existingProduct) {
+      setCart(previous => (previous.map(product => product.id === id ? { ...product, itemCount: product.itemCount + itemCount } : product)));
+    } else {
+      setCart(previous => ([ ...previous, { id, title, price, category, image, itemCount }]));
+    }
   }
 
   useEffect(() => {
