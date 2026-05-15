@@ -2,6 +2,20 @@ import { NavLink } from 'react-router';
 import { useState } from "react";
 
 function BasketItem({ id, title, price, itemCount, imageSrc, increaseItemCount, decreaseItemCount, removeItem }) {
+    const [quantity, setQuantity] = useState(itemCount);
+    
+    function increaseQuantity(id) {
+        setQuantity(quantity + 1);
+        increaseItemCount(id);
+    }
+    
+    function decreaseQuantity(id) {
+        if (quantity > 1) {
+            setQuantity(quantity - 1);
+            decreaseItemCount(id);
+        }
+    }
+
     return (
         <div className="item-card" style={{ border: '1px solid black ', padding: '10px' }}>
             <div>
@@ -11,9 +25,9 @@ function BasketItem({ id, title, price, itemCount, imageSrc, increaseItemCount, 
                 <p>{title}</p>
                 <p>£{price}</p>
                 <span className="toggleQuantity" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid black' , margin: '0', padding: '0' }}>
-                    <button onClick={() => decreaseItemCount(id)}>-</button>
+                    <button onClick={() => decreaseQuantity(id)}>-</button>
                     <p>{itemCount}</p>
-                    <button onClick={() => increaseItemCount(id)}>+</button>
+                    <button onClick={() => increaseQuantity(id)}>+</button>
                 </span>
                 <button onClick={() => removeItem(id)}>Remove</button>
             </div>

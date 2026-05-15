@@ -14,7 +14,7 @@ export default function Cart() {
   }
   
   function decreaseItemCount(id) {
-    setCart(previous => (previous.map(product => product.id === id ? { ...product, itemCount: (product.itemCount > 0 ? product.itemCount - 1 : 1) } : product)));
+    setCart(previous => (previous.map(product => product.id === id ? { ...product, itemCount: product.itemCount - 1 } : product)));
   }
 
   function removeItem(id) {
