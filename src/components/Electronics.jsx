@@ -3,8 +3,8 @@ import { MainContent } from "./utils";
 import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router";
 
-export default function Womans() {
-  const [womensClothing, setWomensClothing] = useState(null);
+export default function Technology() {
+  const [electronics, setElectronics] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [cart, setCart] = useOutletContext();
@@ -34,7 +34,7 @@ export default function Womans() {
 
               const data = await response.json();
               
-              setWomensClothing(data.filter(items => items.category === "women's clothing"));
+              setElectronics(data.filter(items => items.category === "electronics"));
           } catch (err) {
               setError(err)
           } finally {
@@ -50,8 +50,8 @@ export default function Womans() {
       {loading && <p>Loading...</p>}
       {error && <p>Error loading content</p>}
       {
-        womensClothing && (
-          <MainContent products={womensClothing} onClick={handleCart} />
+        electronics && (
+          <MainContent products={electronics} onClick={handleCart} />
         )
       }
     </div>
