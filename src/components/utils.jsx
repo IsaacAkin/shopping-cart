@@ -1,6 +1,50 @@
 import { NavLink } from 'react-router';
 import { useState } from "react";
 
+function BasketItem({ id, title, price, itemCount, imageSrc, increaseItemCount, decreaseItemCount, removeItem }) {
+    return (
+        <div className="item-card" style={{ border: '1px solid black ', padding: '10px' }}>
+            <div>
+                <img src={imageSrc} alt={title} />
+            </div>
+            <div>
+                <p>{title}</p>
+                <p>£{price}</p>
+                <span className="toggleQuantity" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid black' , margin: '0', padding: '0' }}>
+                    <button onClick={() => decreaseItemCount(id)}>-</button>
+                    <p>{itemCount}</p>
+                    <button onClick={() => increaseItemCount(id)}>+</button>
+                </span>
+                <button onClick={() => removeItem(id)}>Remove</button>
+            </div>
+        </div>
+    )
+}
+
+export function Basket({ products, increase, decrease, onClick}) {
+    return (
+        // <div className="basket">
+        <div className="main-content">
+            {
+                products.map(product => (
+                    <BasketItem
+                        key={product.id}
+                        id={product.id}
+                        title={product.title}
+                        price={product.price}
+                        itemCount={product.itemCount}
+                        category={product.category}
+                        imageSrc={product.image}
+                        increaseItemCount={increase}
+                        decreaseItemCount={decrease}
+                        removeItem={onClick}
+                    />
+                ))
+            }
+        </div>
+    )
+}
+
 function ItemCard({ id, title, price, category, imageSrc, onClick }) {
     const [itemCount, setItemCount] = useState(1);
 
