@@ -112,11 +112,11 @@ export function MainContent({ products, onClick }) {
 export function ShopNavbar() {
     return (
     <nav>
-        <NavLink to={'.'} end className={({ isActive }) => isActive && 'active-link'}>All</NavLink>
-        <NavLink to={'mens'} className={({ isActive }) => isActive && 'active-link'}>Men's Clothing</NavLink>
-        <NavLink to={'womans'} className={({ isActive }) => isActive && 'active-link'}>Woman's Clothing</NavLink>
-        <NavLink to={'electronics'} className={({ isActive }) => isActive && 'active-link'}>Electronics</NavLink>
-        <NavLink to={'jewelry'} className={({ isActive }) => isActive && 'active-link'}>Jewelry</NavLink>
+        <NavLink to={'.'} end className={({ isActive }) => isActive ? 'active-link' : ''}>All</NavLink>
+        <NavLink to={'mens'} className={({ isActive }) => isActive ? 'active-link' : ''}>Men's Clothing</NavLink>
+        <NavLink to={'womans'} className={({ isActive }) => isActive ? 'active-link' : ''}>Woman's Clothing</NavLink>
+        <NavLink to={'electronics'} className={({ isActive }) => isActive ? 'active-link' : ''}>Electronics</NavLink>
+        <NavLink to={'jewelry'} className={({ isActive }) => isActive ? 'active-link' : ''}>Jewelry</NavLink>
     </nav>
     )
 }
@@ -140,13 +140,13 @@ export function Navbar({ cartItems }) {
                 justifySelf: 'center',
                 alignSelf: 'center'
             }}>
-                <NavLink to={'/'} className={({ isActive }) => isActive && 'active-link'}>Home</NavLink>
-                <NavLink to={'/shop'} className={({ isActive }) => isActive && 'active-link'}>Shop</NavLink>
+                <NavLink to={'/'} className={({ isActive }) => isActive ? 'active-link' : ''}>Home</NavLink>
+                <NavLink to={'/shop'} className={({ isActive }) => isActive ? 'active-link' : ''}>Shop</NavLink>
             </nav>
                 <div style={{
                     justifySelf: 'flex-end'
                 }}>
-                    <NavLink to={'/cart'} className={({ isActive }) => isActive && 'active-link'}>Cart {cartItems && cartItems }</NavLink>
+                    <NavLink to={'/cart'} className={({ isActive }) => isActive ? 'active-link' : ''}>Cart {cartItems && cartItems }</NavLink>
                 </div>
         </header>
     )
