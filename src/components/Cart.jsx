@@ -9,6 +9,11 @@ export default function Cart() {
     return selectedItems ? JSON.parse(selectedItems) : [];
   });
 
+  let quantity = 0;
+  cart.forEach(item => {
+    quantity += item.itemCount;
+  })
+
   function increaseItemCount(id) {
     setCart(previous => (previous.map(product => product.id === id ? { ...product, itemCount: product.itemCount + 1 } : product)));
   }
@@ -27,7 +32,7 @@ export default function Cart() {
 
   return (
     <div className='app'>
-      <Navbar cartItems={cart.length} />
+      <Navbar cartItems={quantity} />
       <div className="cart">
         { cart &&
           <Basket 

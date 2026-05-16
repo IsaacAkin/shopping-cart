@@ -9,9 +9,14 @@ export default function Shop() {
     return selectedItems ? JSON.parse(selectedItems) : [];
   });
 
+  let quantity = 0;
+  cart.forEach(item => {
+    quantity += item.itemCount;
+  })
+
   return (
     <div className="app">
-      <Navbar cartItems={cart.length}/>
+      <Navbar cartItems={quantity}/>
       <div className="shop">
         <ShopNavbar />
         <div className="main-contents" style={{ border: '1px solid red'}}>
