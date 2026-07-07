@@ -9,7 +9,7 @@ export default function Shop() {
     return selectedItems ? JSON.parse(selectedItems) : [];
   });
 
-  let quantity = cart.reduce((accumulator, item) => accumulator + item.itemCount, 0);
+  const quantity = cart.reduce((accumulator, item) => accumulator + item.itemCount, 0);
 
   return (
     <div className="app">
