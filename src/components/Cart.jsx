@@ -9,10 +9,7 @@ export default function Cart() {
     return selectedItems ? JSON.parse(selectedItems) : [];
   });
 
-  let quantity = 0;
-  cart.forEach(item => {
-    quantity += item.itemCount;
-  })
+  let quantity = cart.reduce((accumulator, item) => accumulator + item.itemCount, 0);
 
   function increaseItemCount(id) {
     setCart(previous => (previous.map(product => product.id === id ? { ...product, itemCount: product.itemCount + 1 } : product)));

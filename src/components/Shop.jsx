@@ -9,9 +9,11 @@ export default function Shop() {
     return selectedItems ? JSON.parse(selectedItems) : [];
   });
 
+  let quantity = cart.reduce((accumulator, item) => accumulator + item.itemCount, 0);
+
   return (
     <div className="app">
-      <Navbar cartItems={cart.length}/>
+      <Navbar cartItems={quantity}/>
       <div className="shop">
         <ShopNavbar />
         <div className="main-contents" style={{ border: '1px solid red'}}>
